@@ -8,22 +8,49 @@ import java.util.Arrays;
  * @see "https://www.jianshu.com/p/8c915179fd02"
  */
 public class SimpleSort {
-    static int[] arr = {2, 3, 1, 2, 5, 4, 9, 7, 6};
+    static int[] arr = {2, 3, 1, 2, 5, 4, 9, 7, 6, 8, 3};
+    static void print() {
+        System.out.println(Arrays.toString(arr));
+
+    }
 
     public static void main(String[] args) {
         print();
-
-//        bubble();
-//        choice();
-//        binary();
-        qsort(arr, 0, arr.length-1);
-//        shellSort();
-
-
+//        bubble(arr);
+//        choice(arr);
+//        binary(arr);
+//        qsort(arr, 0, arr.length - 1);
+//        shellSort(arr);
+//        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
+        shellSort(arr);
         print();
     }
 
-    public static void shellSort() {
+
+    //归并排序(from wikiPedia)
+    public static void merge_sort_recursive(int[] arr, int[] result, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+        System.out.println(start + ":" + end);
+        int len    = end - start, mid = (len >> 1) + start;
+        int start1 = start, end1 = mid;
+        int start2 = mid + 1, end2 = end;
+        merge_sort_recursive(arr, result, start1, end1);
+        merge_sort_recursive(arr, result, start2, end2);
+        int k = start;
+        while (start1 <= end1 && start2 <= end2)
+            result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
+        while (start1 <= end1)
+            result[k++] = arr[start1++];
+        while (start2 <= end2)
+            result[k++] = arr[start2++];
+        for (k = start; k <= end; k++)
+            arr[k] = result[k];
+    }
+
+    //分组插入
+    public static void shellSort(int[] arr) {
         int j    = 0;
         int temp = 0;
         //每次将步长缩短为原来的一半
@@ -45,6 +72,18 @@ public class SimpleSort {
         }
     }
 
+    public static void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int key = array[i];
+            int j = i - 1;
+            while (j >= 0 && array[j] > key) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            array[j + 1] = key;
+        }
+    }
+
     //快排1
     private static void qsort(int[] arr, int low, int high) {
         if (low < high) {
@@ -56,25 +95,21 @@ public class SimpleSort {
 
     //快排2
     private static int partition(int[] arr, int low, int high) {
-        int pivot = arr[low];     //枢轴记录
+        int pivot = arr[low];     //基准
         while (low < high) {
             while (low < high && arr[high] >= pivot) --high;
-            arr[low] = arr[high];             //交换比枢轴小的记录到左端
+            arr[low] = arr[high];             //交换比基准小的记录到左端
             while (low < high && arr[low] <= pivot) ++low;
-            arr[high] = arr[low];           //交换比枢轴小的记录到右端
+            arr[high] = arr[low];           //交换比基准大的记录到右端
         }
-        //扫描完成，枢轴到位
+        //扫描完成，基准到位
         arr[low] = pivot;
-        //返回的是枢轴的位置
+        //返回的是基准的位置
         return low;
     }
 
-    static void print() {
-        System.out.println(Arrays.toString(arr));
 
-    }
-
-    private static void bubble() {
+    private static void bubble(int[] arr) {
         print();
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - 1; j++) {
@@ -88,7 +123,7 @@ public class SimpleSort {
         print();
     }
 
-    private static void choice() {
+    private static void choice(int[] arr) {
         print();
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i; j < arr.length; j++) {
@@ -102,7 +137,7 @@ public class SimpleSort {
         print();
     }
 
-    private static void binary() {
+    private static void binary(int[] arr) {
         print();
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];

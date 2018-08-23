@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 /**
  * revise sort
- * dev sort
- * dev +1
  *
  * @author zmh email: zmhzhaomenghui@gmail.com
  * @createDate 2018/7/27

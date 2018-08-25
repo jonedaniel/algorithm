@@ -9,19 +9,28 @@ import util.ArrayUtil;
  */
 public class SelfTest {
     public static void main(String[] args) {
-        int[] arr = ArrayUtil.intGenerator(100);
+        int[] arr = ArrayUtil.intGenerator(20);
         ArrayUtil.print(arr);
 //        ArrayUtil.print(bubble(arr));
+        ArrayUtil.print(choice(arr));
 //        binaryTest(bubble(arr),15);
+//        ArrayUtil.print(insert(arr));
     }
 
+    public static int[] insert(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i], j = i - 1;
+            for (;j>=0 && arr[j]>temp; j--) {
+                arr[j+1] = arr[j];
+            }
+            arr[j+1] = temp;
+        }
+        return arr;
+    }
 
-
-
-
-    public static void binaryTest(int[] arrtest,int aim) {
-        int   ret     = binarySearch(arrtest, aim, 0, arrtest.length);
-        System.out.println(ret >=0 ?ret + ":" + arrtest[ret]:"不存在目标值");
+    public static void binaryTest(int[] arrtest, int aim) {
+        int ret = binarySearch(arrtest, aim, 0, arrtest.length);
+        System.out.println(ret >= 0 ? ret + ":" + arrtest[ret] : "不存在目标值");
     }
 
     private static int binarySearch(int[] arr, int aim, int start, int end) {
@@ -39,15 +48,22 @@ public class SelfTest {
         return -2;
     }
 
+    /**
+     * unstable choice sort
+     *
+     * @createDate 2018/8/25
+     */
     public static int[] choice(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i] > arr[j]) {
-                    int swap = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = swap;
+        int len = arr.length, min, temp, i, j;
+        for (i = 0; i < len - 1; i++) {
+            min = i;
+            for (j = i + 1; j < len; j++)
+                if (arr[min] > arr[j]) {
+                    min = j;
                 }
-            }
+            temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
         }
         return arr;
     }

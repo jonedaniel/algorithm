@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @see "https://www.jianshu.com/p/8c915179fd02"
  */
 public class SimpleSort {
-    static int[] arr = {2, 3, 1, 2, 5, 4, 9, 7, 6, 8, 3};
+    static int[] arr = {5,4,3,2,1};
     static void print() {
         System.out.println(Arrays.toString(arr));
 
@@ -24,7 +24,8 @@ public class SimpleSort {
 //        qsort(arr, 0, arr.length - 1);
 //        shellSort(arr);
 //        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
-        shellSort(arr);
+//        shellSort(arr);
+        insertionSort(arr);
         print();
     }
 

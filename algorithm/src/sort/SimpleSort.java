@@ -50,6 +50,7 @@ public class SimpleSort {
             result[k++] = arr[start2++];
         for (k = start; k <= end; k++)
             arr[k] = result[k];
+
     }
 
     //分组插入

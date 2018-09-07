@@ -9,8 +9,8 @@ import util.ArrayUtil;
  */
 public class SelfTest {
     public static void main(String[] args) {
-//        int[] arr = ArrayUtil.intGenerator(100);
-        int[] arr = {4, 3, 2, 1};
+        int[] arr = ArrayUtil.intGenerator(100);
+//        int[] arr = {4, 3, 2, 1};
         ArrayUtil.print(arr);
 //        ArrayUtil.print(bubble(arr));
 //        ArrayUtil.print(choice(arr));
@@ -21,7 +21,17 @@ public class SelfTest {
 
 
     public static int[] tempMethod(int[] arr) {
-
+        for (int i = 0; i < arr.length; i++) {
+            int min = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[min] > arr[j]) {
+                    min = j;
+                }
+            }
+            int temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
+        }
         return arr;
     }
 
@@ -29,8 +39,8 @@ public class SelfTest {
     public static int[] insert(int[] arr) {
 
         for (int i = 1; i < arr.length; i++) {
-            int temp=arr[i], j = i-1;
-            while (j>= 0 && arr[j] > temp) {
+            int temp = arr[i], j = i - 1;
+            while (j >= 0 && arr[j] > temp) {
                 arr[j + 1] = arr[j];
                 j--;
             }

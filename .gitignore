@@ -30,3 +30,5 @@ nbdist/
 overlays/
 .gradle/
 build/
+
+venv

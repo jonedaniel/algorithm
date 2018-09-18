@@ -9,8 +9,8 @@ import util.ArrayUtil;
  */
 public class SelfTest {
     public static void main(String[] args) {
-        int[] arr = ArrayUtil.intGenerator(10);
-//        int[] arr = {4, 3, 2, 1};
+//        int[] arr = ArrayUtil.intGenerator(100);
+        int[] arr = {4, 3, 2, 1};
         ArrayUtil.print(arr);
 //        ArrayUtil.print(bubble(arr));
 //        ArrayUtil.print(choice(arr));
@@ -21,19 +21,12 @@ public class SelfTest {
 
 
     public static int[] tempMethod(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i], j = i-1;
-            while (j >= 0 && arr[j] > temp) {
-                arr[j + 1] = arr[j];
-                j--;
-            }
-            arr[j+1] = temp;
-        }
+
         return arr;
     }
 
 
-    public static int[] insert(int[] arr) {
+    public int[] insert(int[] arr) {
 
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i], j = i - 1;
@@ -46,12 +39,12 @@ public class SelfTest {
         return arr;
     }
 
-    public static void binaryTest(int[] arrtest, int aim) {
+    public void binaryTest(int[] arrtest, int aim) {
         int ret = binarySearch(arrtest, aim, 0, arrtest.length);
         System.out.println(ret >= 0 ? ret + ":" + arrtest[ret] : "不存在目标值");
     }
 
-    private static int binarySearch(int[] arr, int aim, int start, int end) {
+    private int binarySearch(int[] arr, int aim, int start, int end) {
         if (start > end) {
             return -1;
         }
@@ -71,7 +64,7 @@ public class SelfTest {
      *
      * @createDate 2018/8/25
      */
-    public static int[] choice(int[] arr) {
+    public int[] choice(int[] arr) {
         int len = arr.length, min, temp, i, j;
         for (i = 0; i < len - 1; i++) {
             min = i;
@@ -86,7 +79,7 @@ public class SelfTest {
         return arr;
     }
 
-    public static int[] bubble(int[] arr) {
+    public int[] bubble(int[] arr) {
         int length = arr.length;
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < length - 1; j++) {

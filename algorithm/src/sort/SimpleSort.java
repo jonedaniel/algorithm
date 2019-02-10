@@ -10,25 +10,11 @@ import java.util.Arrays;
  * @see "https://www.jianshu.com/p/8c915179fd02"
  */
 public class SimpleSort {
-    static int[] arr = {5,4,3,2,1};
+
     static void print() {
         System.out.println(Arrays.toString(arr));
 
     }
-
-    public static void main(String[] args) {
-        print();
-//        bubble(arr);
-//        choice(arr);
-//        binary(arr);
-//        qsort(arr, 0, arr.length - 1);
-//        shellSort(arr);
-//        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
-//        shellSort(arr);
-        insertionSort(arr);
-        print();
-    }
-
 
     //归并排序(from wikiPedia)
     public static void merge_sort_recursive(int[] arr, int[] result, int start, int end) {
@@ -79,7 +65,7 @@ public class SimpleSort {
     public static void insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             int key = array[i];
-            int j = i - 1;
+            int j   = i - 1;
             while (j >= 0 && array[j] > key) {
                 array[j + 1] = array[j];
                 j--;
@@ -88,14 +74,29 @@ public class SimpleSort {
         }
     }
 
+    public static void main(String[] args) {
+        print();
+//        bubble(arr);
+//        choice(arr);
+//        binary(arr);
+        qsort(arr, 0, arr.length - 1);
+//        shellSort(arr);
+//        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
+//        shellSort(arr);
+//        insertionSort(arr);
+        print();
+    }
+
+
     //快排1
     private static void qsort(int[] arr, int low, int high) {
         if (low < high) {
-            int pivot = partition(arr, low, high);        //将数组分为两部分
-            qsort(arr, low, pivot - 1);                   //递归排序左子数组
-            qsort(arr, pivot + 1, high);                  //递归排序右子数组
+            int pivot = partition(arr, low, high);//将数组分为两部分
+            qsort(arr, low, pivot - 1);//递归排序左子数组
+            qsort(arr, pivot + 1, high);//递归排序右子数组
         }
     }
+    static int[] arr = {4, 8, 7, 5, 6, 4, 3, 2, 1};
 
     //快排2
     private static int partition(int[] arr, int low, int high) {

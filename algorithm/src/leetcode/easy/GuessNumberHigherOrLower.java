@@ -1,9 +1,5 @@
 package leetcode.easy;
 
-import org.junit.Test;
-
-import java.util.PrimitiveIterator;
-
 /**
  * Title: GuessNumberHigherOrLower
  * Description:
@@ -33,7 +29,8 @@ public class GuessNumberHigherOrLower {
     int compare = 1;
 
     /**
-     *  holyshit motherfucker
+     * holyshit motherfucker
+     *
      * @author zhaomenghui
      * @createDate 2019/1/21
      */
@@ -48,20 +45,23 @@ public class GuessNumberHigherOrLower {
     int guess(int num);
     */
     public int guessNumber(int n) {
-        return recursive(1,n);
+        return recursive(1, n);
     }
 
     private int recursive(int min, int max) {
-        int mid = (min + max) /2;
+        int mid   = (min + max) / 2;
         int guess = guess(mid);
-        if (guess == 0) {return mid;
-        } else if (guess == 1) {return recursive(min,mid-1);
-        } else {return recursive(mid+1,max);
+        if (guess == 0) {
+            return mid;
+        } else if (guess == 1) {
+            return recursive(min, mid - 1);
+        } else {
+            return recursive(mid + 1, max);
         }
     }
 
-    private int guess(int num){
-        return Integer.compare(num,compare);
+    private int guess(int num) {
+        return Integer.compare(num, compare);
     }
 
 }

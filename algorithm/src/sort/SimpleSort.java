@@ -96,6 +96,7 @@ public class SimpleSort {
             qsort(arr, pivot + 1, high);//递归排序右子数组
         }
     }
+
     static int[] arr = {4, 8, 7, 5, 6, 4, 3, 2, 1};
 
     //快排2

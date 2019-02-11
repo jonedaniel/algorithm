@@ -1,5 +1,6 @@
 package sort;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -16,20 +17,30 @@ public class Quicksort {
 
     public static void main(String[] args) {
         Quicksort qs = new Quicksort();
-
+        System.out.println(Arrays.toString(qs.originalArr));
+        qs.quicksort(qs.originalArr,0,qs.originalArr.length-1);
+        System.out.println(Arrays.toString(qs.originalArr));
     }
 
     private void quicksort(int[] arr, int low, int high) {
         if (low < high) {
             int pivot = partition(arr, low, high);
+            quicksort(arr,low,pivot-1);
+            quicksort(arr,pivot+1,high);
+
         }
     }
 
     private int partition(int[] arr, int low, int high) {
-        if (low < high) {
-            int pivot = arr[low];
+        int pivot = arr[low];
+        while (low < high) {
+            while (low < high && arr[high] >=pivot) high--;
+            arr[low] = arr[high];
+            while (low < high&& arr[low] <= pivot) low++;
+            arr[high] = arr[low];
         }
-        return 0;
+        arr[low] = pivot;
+        return low;
     }
 
 }

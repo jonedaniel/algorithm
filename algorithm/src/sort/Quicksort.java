@@ -26,6 +26,8 @@ public class Quicksort {
     private void quicksort(int[] arr, int low, int high) {
         if (low < high) {
             int pivot = partition(arr, low, high);
+            quicksort(arr, low, pivot-1);
+            quicksort(arr, pivot+1, high);
         }
     }
 
@@ -33,7 +35,11 @@ public class Quicksort {
         int pivot = arr[low];
         while (low < high) {
             while (low < high && arr[high] >= pivot) --high;
+            arr[low] = arr[high];
+            while (low < high && arr[low] <= pivot ) ++low;
+            arr[high] = arr[low];
         }
+        arr[low] = pivot;
         return low;
     }
 

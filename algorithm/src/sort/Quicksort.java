@@ -17,6 +17,7 @@ public class Quicksort {
         Quicksort qs = new Quicksort();
         System.out.println(Arrays.toString(originalArr));
 //        qs.quicksort(originalArr, 0, originalArr.length - 1);
+        qs.quicksortSelf(originalArr, 0, originalArr.length - 1);
         System.out.println(Arrays.toString(originalArr));
     }
 
@@ -86,9 +87,8 @@ public class Quicksort {
         if (high > i) quicksortMiddle(arr, i, high);
     }
 
-    static int[] originalArr = new int[]{9, 8, 7, 6, 1, 4, 3, 2, 5};
-
     /**
+     * 基准取尾:
      * core point:
      * while(low < high && arr[low] <= pivot) ++low;
      * 当low的值小于pivot就累加low,直到遇到一个low大于pivot.则这个low,应该被放到右边,arr[high] = arr[low],
@@ -104,15 +104,47 @@ public class Quicksort {
     private int partitionSelf1(int[] arr, int low, int high) {
         int pivot = arr[high];
         while (low < high) {
-            while (low < high && arr[low] <= pivot) ++low;
+            while (low < high&& arr[low] <= pivot) ++low;
             arr[high] = arr[low];
-            while (low < high && arr[high] >= pivot) --high;
+            while (low < high && arr[high] > pivot) --high;
             arr[low] = arr[high];
         }
-        arr[low] = pivot;
+        arr[high] = pivot;
         return high;
     }
 
+    static int[] originalArr = new int[]{9, 8, 7, 6, 1, 4, 3, 2, 5};
 
+    /**
+     *  基准取中:
+     *  取low与high的index作为middle,arr[middle] 为基准值.
+     *  while(i<=j) while(arr[i]<pivot) ++i;获取到第一个大于基准值的位置i;
+     *  while(arr[j]>pivot)--j;获取到第一个小于基准值的位置j;
+     *  如果i <= j. 交换这两个值,然后++i,--j; 继续循环.
+     *
+     *  使用 <= ,i<=j 是为了让j作为 左半部分去递归
+     * @createDate 2019/2/12
+     */
+    private void quicksortSelf(int[] arr, int low, int high) {
+        if(arr == null || arr.length ==0 || high < low) return;
+
+        int middle = low + (high - low) / 2;
+        int pivot = arr[middle];
+
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i] < pivot) ++i;
+            while (arr[j] > pivot) --j;
+            if (i<=j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                ++i;
+                --j;
+            }
+        }
+        if(low < j) quicksortSelf(arr,low,j);
+        if(high > i)quicksortSelf(arr,i,high);
+    }
 
 }

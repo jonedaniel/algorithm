@@ -15,6 +15,6 @@ public class TestJunit {
     @Test
     public void testHello() {
         hello();
-        assertEquals(1,test1());
+        assertEquals(1, test1());
     }
 }

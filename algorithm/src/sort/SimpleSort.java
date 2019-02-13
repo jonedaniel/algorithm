@@ -18,9 +18,7 @@ public class SimpleSort {
 
     //归并排序(from wikiPedia)
     public static void merge_sort_recursive(int[] arr, int[] result, int start, int end) {
-        if (start >= end) {
-            return;
-        }
+        if (start >= end) return;
         System.out.println(start + ":" + end);
         int len    = end - start, mid = (len >> 1) + start;
         int start1 = start, end1 = mid;
@@ -75,9 +73,9 @@ public class SimpleSort {
 //        bubble(arr);
 //        choice(arr);
 //        binary(arr);
-        qsort(arr, 0, arr.length - 1);
+//        qsort(arr, 0, arr.length - 1);
 //        shellSort(arr);
-//        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
+        merge_sort_recursive(arr, new int[arr.length], 0, arr.length - 1);
 //        shellSort(arr);
 //        insertionSort(arr);
         print();

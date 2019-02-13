@@ -47,16 +47,12 @@ public class SimpleSort {
         for (int increment = arr.length / 2; increment > 0; increment /= 2) {
             for (int i = increment; i < arr.length; i++) {
                 temp = arr[i];
-                for (j = i; j >= increment; j -= increment) {
-                    if (temp < arr[j - increment])//如想从小到大排只需修改这里
-                    {
-                        arr[j] = arr[j - increment];
-                    } else {
-                        break;
-                    }
-
+                j = i - increment;
+                while (j >= 0 && arr[j] > temp) {
+                    arr[j + increment] = arr[j];
+                    j -= increment;
                 }
-                arr[j] = temp;
+                arr[j + increment] = temp;
             }
 
         }

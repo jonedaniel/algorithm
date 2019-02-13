@@ -15,10 +15,8 @@ public class InsertSort {
 
     public static void main(String[] args) {
         ArrayUtil.print(arr);
-        sort(arr);
+        sortByFor(arr);
         ArrayUtil.print(arr);
-
-        System.out.println(1/2);
     }
 
     /**
@@ -40,7 +38,37 @@ public class InsertSort {
         }
     }
 
-    private static void shellSort(int[] arr) {
+    private static void sortByFor(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i];
+            int j = i - 1;
+            for (; j >= 0; j--) {
+                if (arr[j] > temp) {
+                    arr[j + 1] = arr[j];
+                }else break;
+            }
+            arr[j + 1] = temp;
+        }
+    }
 
+    /**
+     * 希尔排序:
+     * 分组插入,循环减少步长,然后对步长上的数组进行插入排序
+     *
+     * @author zhaomenghui
+     * @createDate 2019/2/13
+     */
+    private static void shellSort(int[] arr) {
+        for (int increment = arr.length / 2; increment > 0; increment /= 2) {
+            for (int i = increment; i < arr.length; i++) {
+                int temp = arr[i];
+                int j    = i - increment;
+                while (j >= 0 && arr[j] > temp) {
+                    arr[j + increment] = arr[j];
+                    j -= increment;
+                }
+                arr[j + increment] = temp;
+            }
+        }
     }
 }

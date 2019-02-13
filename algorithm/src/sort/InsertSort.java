@@ -13,12 +13,6 @@ import util.ArrayUtil;
 public class InsertSort {
     static int[] arr = {9, 5, 3, 2, 5, 1};
 
-    public static void main(String[] args) {
-        ArrayUtil.print(arr);
-        sortByFor(arr);
-        ArrayUtil.print(arr);
-    }
-
     /**
      * 插入排序:
      * 设置一个有序数列, 然后遍历数组,从后到前与有序数列比较,然后将该元素插入到他的位置
@@ -41,11 +35,11 @@ public class InsertSort {
     private static void sortByFor(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
-            int j = i - 1;
+            int j    = i - 1;
             for (; j >= 0; j--) {
                 if (arr[j] > temp) {
                     arr[j + 1] = arr[j];
-                }else break;
+                } else break;
             }
             arr[j + 1] = temp;
         }
@@ -69,6 +63,56 @@ public class InsertSort {
                 }
                 arr[j + increment] = temp;
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayUtil.print(arr);
+//        sortByFor(arr);
+//        insertRound2(arr);
+//        shellRound2(arr);
+        insertByForRound2(arr);
+        ArrayUtil.print(arr);
+    }
+
+    private static void insertRound2(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j    = i - 1;
+            int temp = arr[i];
+            while (j >= 0 && arr[j] > temp) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = temp;
+        }
+    }
+
+    private static void shellRound2(int[] arr) {
+        for (int increment = arr.length / 2; increment > 0; increment /= 2) {
+            for (int i = increment; i < arr.length; i += increment) {
+                int j = i - increment;
+                int temp = arr[i];
+                while (j >= 0 && arr[j] > temp) {
+                    arr[j + increment] = arr[j];
+                    j -= increment;
+                }
+                arr[j + increment] = temp;
+            }
+        }
+    }
+
+    private static void insertByForRound2(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j = i - 1;
+            int temp = arr[i];
+            for (; j >=0 ; j--) {
+                if (arr[j] > temp) {
+                    arr[j + 1] = arr[j];
+                } else {
+                    break;
+                }
+            }
+            arr[j + 1] = temp;
         }
     }
 }

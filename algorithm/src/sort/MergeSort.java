@@ -38,13 +38,13 @@ public class MergeSort {
     }
 
     private static void merge(int[] arr, int[] result, int start, int end) {
-        if (start >= end) return;
+        if(start >= end) return;
 
-        int len = end - start, mid = start + (len / 2), start1 = start, start2 = mid + 1;
+        int len = end - start, mid = start + (len / 2);
+        int start1 = start,start2 = mid +1;
 
         merge(arr, result, start1, mid);
-        merge(arr, result, start2, end);
-
+        merge(arr,result,start2,end);
         int k = start;
         while (start1 <= mid && start2 <= end)
             result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];

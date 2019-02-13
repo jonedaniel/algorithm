@@ -32,4 +32,5 @@ public class ArrayUtil {
     public static void print(int[] arr) {
         System.out.println(toString(arr));
     }
+
 }

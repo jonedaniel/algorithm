@@ -103,10 +103,11 @@ public class Quicksort {
      */
     private int partitionSelf1(int[] arr, int low, int high) {
         int pivot = arr[high];
+
         while (low < high) {
-            while (low < high&& arr[low] <= pivot) ++low;
+            while (low < high && arr[low] <= pivot) ++low;
             arr[high] = arr[low];
-            while (low < high && arr[high] > pivot) --high;
+            while (low < high && arr[high] >= pivot) --high;
             arr[low] = arr[high];
         }
         arr[high] = pivot;
@@ -116,26 +117,27 @@ public class Quicksort {
     static int[] originalArr = new int[]{9, 8, 7, 6, 1, 4, 3, 2, 5};
 
     /**
-     *  基准取中:
-     *  取low与high的index作为middle,arr[middle] 为基准值.
-     *  while(i<=j) while(arr[i]<pivot) ++i;获取到第一个大于基准值的位置i;
-     *  while(arr[j]>pivot)--j;获取到第一个小于基准值的位置j;
-     *  如果i <= j. 交换这两个值,然后++i,--j; 继续循环.
+     * 基准取中:
+     * 取low与high的index作为middle,arr[middle] 为基准值.
+     * while(i<=j) while(arr[i]<pivot) ++i;获取到第一个大于基准值的位置i;
+     * while(arr[j]>pivot)--j;获取到第一个小于基准值的位置j;
+     * 如果i <= j. 交换这两个值,然后++i,--j; 继续循环.
+     * <p>
+     * 使用 <= ,i<=j 是为了让j作为 左半部分去递归
      *
-     *  使用 <= ,i<=j 是为了让j作为 左半部分去递归
      * @createDate 2019/2/12
      */
     private void quicksortSelf(int[] arr, int low, int high) {
-        if(arr == null || arr.length ==0 || high < low) return;
+        if (arr == null || arr.length == 0 || high < low) return;
 
-        int middle = low + (high - low) / 2;
-        int pivot = arr[middle];
+        int midlle = low + (high - low) / 2;
+        int pivot  = arr[midlle];
 
         int i = low, j = high;
         while (i <= j) {
             while (arr[i] < pivot) ++i;
             while (arr[j] > pivot) --j;
-            if (i<=j) {
+            if (i <= j) {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
@@ -143,8 +145,8 @@ public class Quicksort {
                 --j;
             }
         }
-        if(low < j) quicksortSelf(arr,low,j);
-        if(high > i)quicksortSelf(arr,i,high);
+        if (low < j) quicksortSelf(arr, low, j);
+        if (high > i) quicksortSelf(arr, i, high);
     }
 
 }

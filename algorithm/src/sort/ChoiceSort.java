@@ -1,7 +1,13 @@
 package sort;
 
 import java.util.Arrays;
-
+/**
+ * Title: ChoiceSort
+ * Description: n^2
+ *
+ * @author zhaomenghui93@163.com
+ * @createDate 2019/2/13
+ */
 public class ChoiceSort {
     static int[] arr = {9, 6, 5, 4, 7, 3, 2, 1};
 

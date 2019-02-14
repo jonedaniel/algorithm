@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 /**
  * Title: BubbleSort
- * Description: 冒泡深究
- *
+ * Description: 冒泡深入
+ *      n^2
  * @author zhaomenghui93@163.com
  * @createDate 2019/2/12
  */

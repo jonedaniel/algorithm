@@ -11,7 +11,6 @@ import util.ArrayUtil;
  * @createDate 2019/2/13
  */
 public class InsertSort {
-    static int[] arr = {9, 5, 3, 2, 5, 1};
 
     /**
      * 插入排序:
@@ -66,15 +65,6 @@ public class InsertSort {
         }
     }
 
-    public static void main(String[] args) {
-        ArrayUtil.print(arr);
-//        sortByFor(arr);
-//        insertRound2(arr);
-//        shellRound2(arr);
-        insertByForRound2(arr);
-        ArrayUtil.print(arr);
-    }
-
     private static void insertRound2(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int j    = i - 1;
@@ -90,7 +80,7 @@ public class InsertSort {
     private static void shellRound2(int[] arr) {
         for (int increment = arr.length / 2; increment > 0; increment /= 2) {
             for (int i = increment; i < arr.length; i += increment) {
-                int j = i - increment;
+                int j    = i - increment;
                 int temp = arr[i];
                 while (j >= 0 && arr[j] > temp) {
                     arr[j + increment] = arr[j];
@@ -103,9 +93,9 @@ public class InsertSort {
 
     private static void insertByForRound2(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-            int j = i - 1;
+            int j    = i - 1;
             int temp = arr[i];
-            for (; j >=0 ; j--) {
+            for (; j >= 0; j--) {
                 if (arr[j] > temp) {
                     arr[j + 1] = arr[j];
                 } else {
@@ -115,4 +105,40 @@ public class InsertSort {
             arr[j + 1] = temp;
         }
     }
+
+    static int[] arr = {9, 5, 3, 2, 5, 1};
+
+    public static void main(String[] args) {
+        ArrayUtil.print(arr);
+//        insertRound3(arr);
+        shellRound3(arr);
+        ArrayUtil.print(arr);
+    }
+
+    private static void shellRound3(int[] arr) {
+        for (int step = arr.length / 2; step >= 1; step /= 2) {
+            for (int i = step; i < arr.length; i++) {
+                int j = i - step;
+                int key = arr[i];
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + step] = arr[j];
+                    j -= step;
+                }
+                arr[j + step] = key;
+            }
+        }
+    }
+
+    private static void insertRound3(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j   = i - 1;
+            int key = arr[i];
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
 }

@@ -12,16 +12,8 @@ import java.util.Arrays;
  */
 public class MergeSort {
 
-    static int[] oriArr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-
     private static void print() {
         System.out.println(Arrays.toString(oriArr));
-    }
-
-    public static void main(String[] args) {
-        print();
-        merge(oriArr, new int[oriArr.length], 0, oriArr.length - 1);
-        print();
     }
 
     private static void mergeTwoArr(int[] arr1, int[] arr2) {
@@ -56,4 +48,31 @@ public class MergeSort {
         for (k = start; k <= end; k++)
             arr[k] = result[k];
     }
+
+    public static void main(String[] args) {
+        print();
+        mergeRound2(oriArr, new int[oriArr.length], 0, oriArr.length - 1);
+        print();
+    }
+
+    private static void mergeRound2(int[] arr, int[] result, int start, int end) {
+        if(arr == null || arr.length ==0||start>=end) return;
+
+        int len = end - start, mid = start + (len / 2);
+        int start1 = start, start2 = mid+1;
+        mergeRound2(arr, result, start, mid);
+        mergeRound2(arr, result, start2, end);
+
+        int k = start;
+        while (start1<=mid&&start2<=end) result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
+        while (start1 <= mid) result[k++] = arr[start1++];
+        while (start2 <= end) result[k++] = arr[start2++];
+
+
+        for (k = start; k <=end ; k++) {
+            arr[k] = result[k];
+        }
+    }
+
+    static int[] oriArr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 }

@@ -1,5 +1,7 @@
 package sort;
 
+import javafx.beans.property.ReadOnlyMapProperty;
+
 import java.awt.image.Kernel;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -178,29 +180,17 @@ public class Quicksort {
         if (high > i) quicksortWithMiddleRound2(arr, i, high);
     }
 
-    public static void main(String[] args) {
-        Quicksort qs = new Quicksort();
-        System.out.println(Arrays.toString(originalArr));
-//        qs.quicksort(originalArr, 0, originalArr.length - 1);
-//        qs.quicksortSelf(originalArr, 0, originalArr.length - 1);
-//        qs.quickSortWithTailRound2(originalArr, 0, originalArr.length - 1);
-//        qs.quicksortWithMiddleRound2(originalArr, 0, originalArr.length - 1);
-//        qs.quicksortWithTailRound3(originalArr, 0, originalArr.length - 1);
-        qs.quicksortWithMiddleRound3(originalArr, 0, originalArr.length - 1);
-        System.out.println(Arrays.toString(originalArr));
-    }
-
     private void quicksortWithMiddleRound3(int[] arr, int low, int high) {
-        if(arr == null||arr.length==0||high < low)return;
+        if (arr == null || arr.length == 0 || high < low) return;
 
         int middle = low + (high - low) / 2;
-        int pivot = arr[middle];
+        int pivot  = arr[middle];
 
         int i = low, j = high;
         while (i <= j) {
             while (arr[i] < pivot) ++i;
-            while (arr[j] >pivot)--j;
-            if (i <=j) {
+            while (arr[j] > pivot) --j;
+            if (i <= j) {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
@@ -209,12 +199,12 @@ public class Quicksort {
             }
         }
 
-        if(low < j)quicksortWithMiddleRound3(arr,low,j);
-        if(high>i) quicksortWithMiddleRound3(arr, i, high);
+        if (low < j) quicksortWithMiddleRound3(arr, low, j);
+        if (high > i) quicksortWithMiddleRound3(arr, i, high);
     }
 
     private void quicksortWithTailRound3(int[] arr, int low, int high) {
-        if(arr == null||arr.length==0||high < low)return;
+        if (arr == null || arr.length == 0 || high < low) return;
         int pivot = arr[high];
 
         int start = low, end = high;
@@ -226,9 +216,63 @@ public class Quicksort {
         }
         arr[high] = pivot;
 
-        quicksortWithTailRound3(arr,start,high-1);
+        quicksortWithTailRound3(arr, start, high - 1);
         quicksortWithTailRound3(arr, pivot + 1, end);
     }
 
+    private void quicksortWithMiddleRound4(int[] arr, int low, int high) {
+        if (high < low) return;
+        int mid   = low + ((high - low) / 2);
+        int pivot = arr[mid];
+
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i] <pivot) ++i;
+            while (arr[j] >pivot) --j;
+            if (i <= j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                ++i;
+                --j;
+            }
+        }
+        if (low < j) quicksortWithMiddleRound4(arr, low, j);
+        if (high>i) quicksortWithMiddleRound4(arr, i, high);
+    }
+
+    public static void main(String[] args) {
+        Quicksort qs = new Quicksort();
+        System.out.println(Arrays.toString(originalArr));
+//        qs.quicksort(originalArr, 0, originalArr.length - 1);
+//        qs.quicksortSelf(originalArr, 0, originalArr.length - 1);
+//        qs.quickSortWithTailRound2(originalArr, 0, originalArr.length - 1);
+//        qs.quicksortWithMiddleRound2(originalArr, 0, originalArr.length - 1);
+//        qs.quicksortWithTailRound3(originalArr, 0, originalArr.length - 1);
+//        qs.quicksortWithMiddleRound3(originalArr, 0, originalArr.length - 1);
+//        qs.quicksortWithMiddleRound4(originalArr, 0, originalArr.length - 1);
+        qs.quicksortWithTailRound4(originalArr, 0, originalArr.length - 1);
+
+        System.out.println(Arrays.toString(originalArr));
+    }
+
+    private void quicksortWithTailRound4(int[] arr, int low, int high) {
+        if(high < low )return;
+        int pivot = arr[high];
+
+        int start = low, end = high;
+        while (low < high) {
+            while (low < high && arr[low] <= pivot) ++low;
+            arr[high] = arr[low];
+            while (low < high && arr[high] >= pivot) --high;
+            arr[low] = arr[high];
+        }
+        arr[high] = pivot;
+        quicksortWithTailRound4(arr, start, high - 1);
+        quicksortWithTailRound4(arr, high + 1, end);
+    }
+
     static int[] originalArr = new int[]{9, 8, 7, 6, 1, 4, 3, 2, 5};
+
+
 }

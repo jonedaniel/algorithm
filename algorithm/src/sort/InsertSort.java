@@ -106,15 +106,6 @@ public class InsertSort {
         }
     }
 
-    static int[] arr = {9, 5, 3, 2, 5, 1};
-
-    public static void main(String[] args) {
-        ArrayUtil.print(arr);
-//        insertRound3(arr);
-        shellRound3(arr);
-        ArrayUtil.print(arr);
-    }
-
     private static void shellRound3(int[] arr) {
         for (int step = arr.length / 2; step >= 1; step /= 2) {
             for (int i = step; i < arr.length; i++) {
@@ -133,6 +124,39 @@ public class InsertSort {
         for (int i = 1; i < arr.length; i++) {
             int j   = i - 1;
             int key = arr[i];
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    static int[] arr = {9, 5, 3, 2, 5, 1};
+
+    public static void main(String[] args) {
+        ArrayUtil.print(arr);
+//        insertRound4(arr);
+        shellRound4(arr);
+        ArrayUtil.print(arr);
+    }
+
+    private static void shellRound4(int[] arr) {
+        for (int step = arr.length/2; step >0 ; step/=2) {
+            for (int i = step; i < arr.length; i+=step) {
+                int j = i - step, key = arr[i];
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + step] = arr[j];
+                    j -= step;
+                }
+                arr[j + step] = key;
+            }
+        }
+    }
+
+    private static void insertRound4(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j = i - 1, key = arr[i];
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j--;

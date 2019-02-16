@@ -8,23 +8,11 @@ import util.ArrayUtil;
  * @createDate 2018/8/25
  */
 public class SelfTest {
-    public static void main(String[] args) {
-//        int[] arr = ArrayUtil.intGenerator(100);
-        int[] arr = {4, 3, 2, 1};
-        ArrayUtil.print(arr);
-//        ArrayUtil.print(bubble(arr));
-//        ArrayUtil.print(choice(arr));
-        ArrayUtil.print(tempMethod(arr));
-//        binaryTest(bubble(arr),15);
-//        ArrayUtil.print(insert(arr));
-    }
-
 
     public static int[] tempMethod(int[] arr) {
 
         return arr;
     }
-
 
     public int[] insert(int[] arr) {
 
@@ -91,5 +79,22 @@ public class SelfTest {
             }
         }
         return arr;
+    }
+
+    public static void main(String[] args) {
+//        int[] arr = ArrayUtil.intGenerator(100);
+        int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        ArrayUtil.print(arr);
+//        ArrayUtil.print(bubble(arr));
+//        ArrayUtil.print(choice(arr));
+//        ArrayUtil.print(tempMethod(arr));
+//        binaryTest(bubble(arr),15);
+//        ArrayUtil.print(insert(arr));
+        trainSort(arr, 0, arr.length - 1);
+        ArrayUtil.print(arr);
+    }
+
+
+    public static void trainSort(int[] arr, int low, int high) {
     }
 }

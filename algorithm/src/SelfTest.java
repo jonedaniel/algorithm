@@ -90,11 +90,12 @@ public class SelfTest {
 //        ArrayUtil.print(tempMethod(arr));
 //        binaryTest(bubble(arr),15);
 //        ArrayUtil.print(insert(arr));
-        trainSort(arr, 0, arr.length - 1);
+        trainSort(arr, new int[arr.length], 0, arr.length - 1);
         ArrayUtil.print(arr);
     }
 
 
-    public static void trainSort(int[] arr, int low, int high) {
+    public static void trainSort(int[] arr, int[] result, int low, int high) {
+
     }
 }

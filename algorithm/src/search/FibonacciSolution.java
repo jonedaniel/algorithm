@@ -2,13 +2,13 @@ package search;
 
 public class FibonacciSolution {
     public static void main(String[] args) {
-        System.out.println(directSimple(20));
-        System.out.println(orderAsc(20));
-        System.out.println(generalFormulas(20));
+//        System.out.println(directSimple(20));
+        System.out.println(orderAsc(100));
+        System.out.println(generalFormulas(45));
 
     }
 
-    private static int directSimple(int n) {
+    private static long directSimple(int n) {
         if (n == 0) return 0;
         else if (n == 1) return 1;
         else return directSimple(n - 1) + directSimple(n - 2);
@@ -20,8 +20,8 @@ public class FibonacciSolution {
      * @author zhaomenghui
      * @createDate 2019/2/18
      */
-    private static int orderAsc(int n) {
-        int[] arr = new int[n + 1];
+    private static long orderAsc(int n) {
+        long[] arr = new long[n + 1];
         arr[0] = 0;
         arr[1] = 1;
         for (int i = 2; i <= n; i++) {

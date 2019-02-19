@@ -95,7 +95,7 @@ public class SelfTest {
     }
 
 
-    public static void trainSort(int[] arr, int[] result, int low, int high) {
+    private static void trainSort(int[] arr, int[] result, int low, int high) {
 
     }
 }

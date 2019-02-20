@@ -7,7 +7,15 @@ public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         print(arr);
-        System.out.println(new BinarySearch().searchRound2(arr,10,0,arr.length-1));
+        System.out.println(new BinarySearch().searchRound3(arr,9,0,arr.length-1));
+    }
+
+    private int searchRound3(int[] arr, int v, int low, int high) {
+        int mid = low + (high - low) / 2;
+        if(low > high)return -1;
+        else if (arr[mid] == v)return mid;
+        else if (arr[mid] > v) return searchRound3(arr, v, low, mid - 1);
+        else return searchRound3(arr, v, mid + 1, high);
     }
 
     private int searchRound2(int[] arr, int v, int start, int end) {

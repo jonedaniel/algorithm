@@ -85,17 +85,21 @@ public class SelfTest {
 //        int[] arr = ArrayUtil.intGenerator(100);
         int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
         ArrayUtil.print(arr);
-//        ArrayUtil.print(bubble(arr));
-//        ArrayUtil.print(choice(arr));
-//        ArrayUtil.print(tempMethod(arr));
-//        binaryTest(bubble(arr),15);
-//        ArrayUtil.print(insert(arr));
         trainSort(arr, new int[arr.length], 0, arr.length - 1);
         ArrayUtil.print(arr);
     }
 
 
     private static void trainSort(int[] arr, int[] result, int low, int high) {
-
+        for (int step = high / 2; step > 0; step /= 2) {
+            for (int i = step; i <= high; i += step) {
+                int j = i - step, key = arr[i];
+                while (j >= 0 && arr[j] > key) {
+                    arr[j + step] = arr[j];
+                    j -= step;
+                }
+                arr[j + step] = key;
+            }
+        }
     }
 }

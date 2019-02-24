@@ -10,7 +10,7 @@ import java.util.List;
  * @author zhaomenghui93@163.com
  * @createDate 2019/2/24
  */
-public class BinaryTreeTest {
+public class BinaryTreeTraversal {
     public static void main(String[] args) {
         //create a binary tree
         MyNode        myNode1   = new MyNode(1);
@@ -22,14 +22,16 @@ public class BinaryTreeTest {
         container.addAll(myNode3, myNode2, myNode1, myNode4, myNode5);
         MyNode        rootNode = container.getRootMyNode();
         List<Integer> list     = new ArrayList<>();
-//        traversal(list, rootNode);
-//        System.out.println(list);
+        traversal(list, rootNode);
+        System.out.println(list);
+
         list = new ArrayList<>();
         inOrder(list, rootNode);
         System.out.println(list);
-//        list = new ArrayList<>();
-//        postOrder(list, rootNode);
-//        System.out.println(list);
+
+        list = new ArrayList<>();
+        postOrder(list, rootNode);
+        System.out.println(list);
     }
 
     /**

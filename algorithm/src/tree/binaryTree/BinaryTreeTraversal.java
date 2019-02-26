@@ -67,6 +67,14 @@ public class BinaryTreeTraversal {
         list.add(node.getVal());
     }
 
+    private static void bfs(List<Integer> list, MyNode node) {
+
+    }
+
+    private static void dfs(List<Integer> list, MyNode node) {
+
+    }
+
 }
 
 

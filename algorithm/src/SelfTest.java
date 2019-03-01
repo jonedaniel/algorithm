@@ -85,12 +85,7 @@ public class SelfTest {
 //        int[] arr = ArrayUtil.intGenerator(100);
         int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
         ArrayUtil.print(arr);
-//        ArrayUtil.print(bubble(arr));
-//        ArrayUtil.print(choice(arr));
-//        ArrayUtil.print(tempMethod(arr));
-//        binaryTest(bubble(arr),15);
-//        ArrayUtil.print(insert(arr));
-        trainSort(arr, 0, arr.length - 1);
+        trainSort(arr, new int[arr.length], 0, arr.length - 1);
         ArrayUtil.print(arr);
         int a = 1,b =2;
 
@@ -98,6 +93,7 @@ public class SelfTest {
     }
 
 
-    public static void trainSort(int[] arr, int low, int high) {
+    private static void trainSort(int[] arr, int[] result, int low, int high) {
+
     }
 }

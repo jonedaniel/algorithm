@@ -92,6 +92,9 @@ public class SelfTest {
 //        ArrayUtil.print(insert(arr));
         trainSort(arr, 0, arr.length - 1);
         ArrayUtil.print(arr);
+        int a = 1,b =2;
+
+        System.out.println(b);
     }
 
 

@@ -87,13 +87,19 @@ public class SelfTest {
         ArrayUtil.print(arr);
         trainSort(arr, new int[arr.length], 0, arr.length - 1);
         ArrayUtil.print(arr);
-        int a = 1,b =2;
-
-        System.out.println(b);
     }
 
 
     private static void trainSort(int[] arr, int[] result, int low, int high) {
+        if(low >= high) return;
+        int mid = (high - low) / 2 + low,i = low, j = mid+1;
+        trainSort(arr,result,low,mid);
+        trainSort(arr,result,mid+1,high);
+        int k = low;
+        while (i <= mid && j <= high) result[k++] = arr[i] < arr[j] ? arr[i++] : arr[j++];
+        while(i <= mid) result[k++] = arr[i++];
+        while (j <= high) result[k++] = arr[j++];
 
+        for (k = low; k <= high; k++) arr[k] = result[k];
     }
 }

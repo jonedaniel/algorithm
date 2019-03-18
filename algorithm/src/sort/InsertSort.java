@@ -136,8 +136,8 @@ public class InsertSort {
 
     public static void main(String[] args) {
         ArrayUtil.print(arr);
-//        insertRound4(arr);
-        shellRound4(arr);
+        insertRound4(arr);
+//        shellRound4(arr);
         ArrayUtil.print(arr);
     }
 

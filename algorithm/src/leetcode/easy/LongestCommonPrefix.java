@@ -1,5 +1,7 @@
 package leetcode.easy;
 
+import search.Count1;
+
 /**
  * Title: LongestCommonPrefix
  * Description:
@@ -30,24 +32,24 @@ public class LongestCommonPrefix {
         System.out.println(new LongestCommonPrefix().longestCommonPrefix(new String[]{"flower", "flow", "flight"}));
     }
 
-    public String longestCommonPrefix(String[] strs) {
+    public String longestCommonPrefix(String[] arr) {
         StringBuilder sb = new StringBuilder();
-        int           i  = 0, j = 0;
-        do {
-            while (strs[i].length() < j + 1) {
-                char c = strs[i].charAt(j);
-                if (j == 0) {
+        int j = 0;
+        while (arr[i].length() >= j + 1) {
+            for (int           i  = 0; i < arr.length; i++) {
+                char c = arr[i].charAt(j);
+                if (sb.length() < j + 1) {
                     sb.append(c);
                 } else {
-                    char sbc = sb.charAt(j);
-                    if (sbc != c) {
+                    char c2 = sb.charAt(j);
+                    if (c2 != c) {
                         sb.deleteCharAt(j);
                         return sb.toString();
                     }
                 }
-                j++;
             }
-        } while (++i < strs.length);
+            j++;
+        }
         return sb.toString();
     }
 }

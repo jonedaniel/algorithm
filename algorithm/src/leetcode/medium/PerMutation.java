@@ -40,26 +40,23 @@ public class PerMutation {
 
         int len  = nums.length;
         int deep = 0;
-        for (int i = 0; i < len; i++) {
-            int val = nums[i];
-            List<Integer> indexRecord = Collections.singletonList(i);
+        for (int val : nums) {
             List<Integer> valList = Collections.singletonList(val);
-            recurse(nums,indexRecord,valList,ll);
+            recurse(nums, valList, ll);
         }
         return ll;
     }
 
-    private void recurse(int[] nums, List<Integer> indexRecord, List<Integer> valList, List<List<Integer>> ll) {
+    private void recurse(int[] nums, List<Integer> valList, List<List<Integer>> ll) {
         if (valList.size() == nums.length) {
             ll.add(valList);
             return;
         }
-        for (int i = 0; i < nums.length; i++) {
-            int val = nums[i];
+        for (int val : nums) {
             if (valList.contains(val)) continue;
             List<Integer> nl = new ArrayList<>(valList);
             nl.add(val);
-            recurse(nums,indexRecord,nl,ll);
+            recurse(nums, nl, ll);
         }
     }
 }

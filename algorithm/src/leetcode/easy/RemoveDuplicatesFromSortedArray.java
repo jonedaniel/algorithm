@@ -18,7 +18,7 @@ import search.Count1;
 public class RemoveDuplicatesFromSortedArray {
     public static void main(String[] args) {
         System.out.println(new RemoveDuplicatesFromSortedArray()
-                .removeDuplicates(new int[]{1, 1, 2, 2, 3, 4, 4}));
+                .removeDuplicates(new int[]{1, 1, 2, 2, 3, 4, 4, 5}));
     }
 
     /**
@@ -29,8 +29,8 @@ public class RemoveDuplicatesFromSortedArray {
      */
     public int removeDuplicates(int[] nums) {
         int len = nums.length;
-        if (len <= 1) {
-            return len;
+        if (len == 1) {
+            return 1;
         }
         int j = 0;
         for (int i = 1; i < len; i++) {

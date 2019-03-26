@@ -69,20 +69,22 @@ public class AccountMerge {
                     boolean flag = true;
                     for (List<String> existList : rl) {
                         int size2 = existList.size();
-                        existList.removeIf(toAddList::contains);
-                        if (existList.size() < size2-1) {
-                            existList.addAll(toAddList);
+                        existList.removeIf(s-> s.contains(".") && toAddList.contains(s));
+                        if (existList.size() < size2) {
+                            existList.addAll(toAddList.subList(1,toAddList.size()));
                             flag = false;
                         }
                     }
                     if(flag) rl.add(toAddList);
                 }
             }
-            if (!oldIndexs.contains(i)) {
-                rl.add(new ArrayList<>(new TreeSet<>(list1)));
-            }
         }
 
+        for (int i = 0; i < accounts.size(); i++) {
+            if (!oldIndexs.contains(i)) {
+                rl.add(new ArrayList<>(new HashSet<>(accounts.get(i))));
+            }
+        }
         rl.forEach(l -> {
             List<String> list = l.subList(1, l.size());
             list.sort(String::compareTo);

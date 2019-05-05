@@ -91,6 +91,15 @@ public class SelfTest {
 
 
     private static void trainSort(int[] arr, int[] result, int low, int high) {
+        if (low >= high) return;
+        int len = high - low, mid = low + len / 2, start1 = low, start2 = mid + 1;
+        trainSort(arr, result, start1, mid);
+        trainSort(arr, result, start2, high);
+        int k = low;
+        while (start1 <= mid && start2 <= high) result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
+        while (start1 <= mid) result[k++] = arr[start1++];
+        while (start2 <= high) result[k++] = arr[start2++];
 
+        for (k = low; k <= high; k++) arr[k] = result[k];
     }
 }

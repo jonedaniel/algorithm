@@ -14,6 +14,13 @@ public class BitBasic {
         //左移,右移运算 5>>1 = 1
         System.out.println(5>>1);
 
+        //异或交换int值.
+        int a = 5;
+        int b = 123;
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        System.out.println( a + " " + b);
 
     }
 }

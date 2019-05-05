@@ -32,7 +32,7 @@ public class SelfTest {
         System.out.println(ret >= 0 ? ret + ":" + arrtest[ret] : "不存在目标值");
     }
 
-    private int binarySearch(int[] arr, int aim, int start, int end) {
+    private static int binarySearch(int[] arr, int aim, int start, int end) {
         if (start > end) {
             return -1;
         }
@@ -87,19 +87,31 @@ public class SelfTest {
         ArrayUtil.print(arr);
         trainSort(arr, new int[arr.length], 0, arr.length - 1);
         ArrayUtil.print(arr);
+        int keyIndex = binarySearch2(arr, 2, 0, arr.length - 1);
+        System.out.println(keyIndex);
+    }
+
+    private static int binarySearch2(int[] arr, int key, int low, int high) {
+        if (low > high) return -1;
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == key) return mid;
+        else if (arr[mid] > key) return binarySearch2(arr, key, low, mid - 1);
+        else if (arr[mid] < key) return binarySearch2(arr, key, mid + 1, high);
+        else return -1;
     }
 
 
     private static void trainSort(int[] arr, int[] result, int low, int high) {
-        if (low >= high) return;
-        int len = high - low, mid = low + len / 2, start1 = low, start2 = mid + 1;
-        trainSort(arr, result, start1, mid);
-        trainSort(arr, result, start2, high);
-        int k = low;
-        while (start1 <= mid && start2 <= high) result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
-        while (start1 <= mid) result[k++] = arr[start1++];
-        while (start2 <= high) result[k++] = arr[start2++];
-
-        for (k = low; k <= high; k++) arr[k] = result[k];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = arr.length - 1; j > i; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    arr[j] = arr[j] ^ arr[j - 1];
+                    arr[j - 1] = arr[j] ^ arr[j - 1];
+                    arr[j] = arr[j] ^ arr[j - 1];
+                }
+            }
+        }
     }
+
+
 }

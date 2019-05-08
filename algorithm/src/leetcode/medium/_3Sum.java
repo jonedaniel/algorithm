@@ -25,7 +25,7 @@ import static java.util.Arrays.asList;
 public class _3Sum {
     public static void main(String[] args) {
         int[] nums = {
-        82597,
+                82597,
                 -9243,
                 62390,
                 83030,
@@ -3025,42 +3025,20 @@ public class _3Sum {
                 78409,
                 -7418,
                 77916
-    };
+        };
         System.out.println(new _3Sum().threeSum(nums));
     }
 
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
         int length = nums.length;
-        for (int i = 0; i < length; i++) {
-            for (int j = i; j < length; j++) {
-                for (int k = j; k < length; k++) {
-                    if (!(i == j || i == k || j == k)) {
-                        int sum = nums[i] + nums[j] + nums[k];
-                        if (sum == 0) {
-                            // 检查是否已经存在这三个数的组合,标志默认不存在
-                            boolean flag = false;
-                            for (List<Integer> list : lists) {
-                                //检查list中是否包含3个相同的int值
-                                Integer vi = list.get(0);
-                                Integer vj = list.get(1);
-                                Integer vk = list.get(2);
-                                if ((vi == nums[i] && vj == nums[j] && vk == nums[k]) ||
-                                        (vi == nums[i] && vk == nums[j] && vj == nums[k])||
-                                        (vk == nums[i] && vi == nums[j] && vj == nums[k]) ||
-                                        (vk == nums[i] && vj == nums[j] && vi == nums[k]) ||
-                                        (vj == nums[i] && vi == nums[j] && vk == nums[k]) ||
-                                        (vj == nums[i] && vk == nums[j] && vi == nums[k])) {
-                                    flag = true;
-                                    break;
-                                }
-                            }
-                            //如果不存在，则新增list
-                            if (!flag) {
-                                List<Integer> list = new ArrayList<Integer>(Arrays.asList(nums[i], nums[j], nums[k]));
-                                lists.add(list);
-                            }
-                        }
+        for (int i = 0; i < length-2; i++) {
+            for (int j = i+1; j < length-1; j++) {
+                for (int k = j+1; k < length; k++) {
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if (sum == 0) {
+                        List<Integer> list = new ArrayList<Integer>(Arrays.asList(nums[i], nums[j], nums[k]));
+                        lists.add(list);
                     }
                 }
             }

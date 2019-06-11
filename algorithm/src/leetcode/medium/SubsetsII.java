@@ -2,8 +2,6 @@ package leetcode.medium;
 
 import java.util.*;
 
-import static java.util.Arrays.asList;
-
 /**
  * 给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
  * <p>
@@ -27,82 +25,77 @@ import static java.util.Arrays.asList;
  */
 public class SubsetsII {
     public static void main(String[] args) {
-//        List<List<Integer>> lists = new SubsetsII().subsetsWithDup(
-//                new int[]{1, 2, 3}
-//        );
-        new SubsetsII().getEleArr(new int[]{1, 2, 3, 4}, 2).forEach(System.out::println);
-//        lists.forEach(System.out::println);
+        List<List<Integer>> lists = new SubsetsII().subsetsWithDup(
+                new int[]{1,2,3,4,5,6,7,8,10,0}
+        );
+        lists.forEach(System.out::println);
     }
 
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        List<List<Integer>> retList = new ArrayList<>();
-        List<Integer> oriArr = new ArrayList<Integer>();
-        for (int num : nums) {
-            oriArr.add(num);
-        }
-
-        retList.add(new ArrayList<>());
-        if (oriArr.size() > 0) {
-            retList.add(oriArr);
-        }
-
-
-        int length = nums.length;
-        for (int i = 1; i < length; i++) {
-            for (int j = i; j < length; j++) {
-                for (int k = 0; k < length - j + 1; k++) {
-
-                }
-            }
-        }
-
-//        retList.addAll(map.values());
-        return retList;
-    }
-
-//    public void removeDup(List<Integer> oriArr) {
-//        Map<String, List<Integer>> map = new HashMap<>();
+//    private List<List<Integer>> subsetsWithDup(int[] ints) {
+//        List<List<Integer>> res = new LinkedList<>();
+//        if (ints == null || ints.length == 0) return res;
 //
-//        List<Integer> list = oriArr.subList(k, k + j);
-//        list.sort(Integer::compareTo);
-//        StringBuilder sb = new StringBuilder();
-//        for (int n = 0; n < list.size(); n++) {
-//            if (n == 0) {
-//                sb.append(list.get(n));
-//            } else {
-//                sb.append("-").append(list.get(n));
-//            }
+//        List<Integer> list = new LinkedList<>();
+//        for (int anInt : ints) {
+//            list.add(anInt);
 //        }
-//        map.put(sb.toString(), list);
+//
+//        res.add(new LinkedList<>());
+//        for (int i = 0; i < ints.length; i++) {
+//            subsetsWithDup(res, list, new LinkedList<>(), i + 1, new HashSet<String>(), "");
+//        }
+//        return res;
 //    }
 
-    public List<List<Integer>> getEleArr(int[] arr, int times) {
-        List<List<Integer>> retList = new ArrayList<>();
-        List<Integer> oriArr = new ArrayList<Integer>();
-        for (int num : arr) {
-            oriArr.add(num);
+//    private void subsetsWithDup(List<List<Integer>> res, List<Integer> list, List<Integer> l, int size, HashSet<String> set, String key) {
+//        if (l.size() == size && !set.contains(key)) {
+//            set.add(key);
+//            res.add(l);
+//        }
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            List<Integer> temp = new LinkedList<>(list);
+//
+//            Integer remove = temp.remove(i);
+//            LinkedList<Integer> nl = new LinkedList<>(l);
+//            nl.add(remove);
+//            nl.sort(Integer::compareTo);
+//            StringBuilder next = new StringBuilder();
+//            if (key.length() == 0) {
+//                next.append(remove);
+//            } else {
+//                for (Integer integer : nl) {
+//                    next.append(integer);
+//                }
+//            }
+//            subsetsWithDup(res, temp, nl, size, set, next.toString());
+//        }
+//
+//    }
+
+
+    List<List<Integer>> res=new LinkedList();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        if(nums.length==0){
+            return res;
         }
-        getTimesEleArr(retList, oriArr, 0,times);
-        return retList;
+        res.add(new LinkedList());
+        Arrays.sort(nums);
+        recursion(new LinkedList<Integer>(),nums);
+        return res;
+
     }
 
-    private void getTimesEleArr(List<List<Integer>> retList, List<Integer> oriArr, int start,int times) {
-        if (times <=0 ) return;
-        List<List<Integer>> tempList = new ArrayList<>();
-        for (int i = start; i < oriArr.size(); i++) {
-            Integer integer = oriArr.get(i);
-            if (retList.size() > 0) {
-                for (List<Integer> list : retList) {
-                    List<Integer> arrayList = new ArrayList<>(list);
-                    arrayList.add(integer);
-                    tempList.add(arrayList);
-                }
-            } else {
-                tempList.add(Collections.singletonList(integer));
+    public void recursion(LinkedList<Integer> list,int[] nums){
+        if(nums==null||nums.length==0)return;
+        for(int i=0;i<nums.length;i++){
+            if(i!=0 && nums[i]==nums[i-1]){
+                continue;
             }
+            list.add(nums[i]);
+            res.add(new LinkedList(list));
+            recursion(list,Arrays.copyOfRange(nums,i+1,nums.length));
+            list.removeLast();
         }
-        retList = tempList;
-        getTimesEleArr(retList,oriArr,++start,--times);
     }
-
 }

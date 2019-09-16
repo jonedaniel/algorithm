@@ -16,15 +16,16 @@ public class CombinationBasic {
     }
 
     public static int count = 0;
+
     public static void pStr(String s) {
-        if(s == null || "".equals(s))return;
+        if (s == null || "".equals(s)) { return; }
 
         LinkedList<Character> list = new LinkedList<>();
         for (int i = 0; i < s.length(); i++) {
             list.add(s.charAt(i));
         }
-        for (int i = 0; i < s.length(); i++) pStr(list,"",i+1,new HashSet<String>());
-//        pStr(list,"",1,new HashSet<String>());
+        for (int i = 0; i < s.length(); i++) { pStr(list, "", i + 1, new HashSet<String>()); }
+        //        pStr(list,"",1,new HashSet<String>());
     }
 
     private static void pStr(List<Character> list, String prefix, int size, HashSet<String> dup) {
@@ -41,16 +42,16 @@ public class CombinationBasic {
             if (prefix.length() == 0) {
                 next.append(remove);
             }
-            boolean added= false;
+            boolean added = false;
             for (int j = 0; j < prefix.length(); j++) {
-                if (prefix.charAt(j) < remove || added ) {
+                if (prefix.charAt(j) < remove || added) {
                     next.append(prefix.charAt(j));
                 } else {
                     next.append(remove).append(prefix.charAt(j));
                     added = true;
                 }
             }
-            pStr(temp, next.toString(),size,dup);
+            pStr(temp, next.toString(), size, dup);
         }
     }
 }

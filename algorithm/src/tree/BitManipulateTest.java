@@ -1,7 +1,7 @@
 package tree;
 
 
-public class Test {
+public class BitManipulateTest {
     public static void main(String[] args) {
         byte x = 0b110;
         byte y = 0b101;

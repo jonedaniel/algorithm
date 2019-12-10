@@ -1,6 +1,7 @@
 package sort;
 
 import java.util.Arrays;
+
 /**
  * Title: ChoiceSort
  * Description: n^2
@@ -30,8 +31,21 @@ public class ChoiceSort {
     public static void main(String[] args) {
         print();
         ChoiceSort sort = new ChoiceSort();
-        sort.sort2(arr);
+        sort.sort3(arr);
         print();
+    }
+
+    private void sort3(int[] arr) {
+        int length = arr.length;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
     }
 
     private void sort2(int[] arr) {

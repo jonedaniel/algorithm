@@ -31,8 +31,21 @@ public class BubbleSort {
     public static void main(String[] args) {
         print();
         BubbleSort sort = new BubbleSort();
-        sort.sort2(arr);
+        sort.sort3(arr);
         print();
+    }
+
+    private void sort3(int[] arr) {
+        int length = arr.length;
+        for (int i = length - 1 ; i > 0 ; i--) {
+            for (int j = 0; j < i; j++) {
+                if (arr[j] > arr[j+1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 
     private void sort2(int[] arr) {
